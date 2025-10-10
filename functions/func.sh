@@ -4,7 +4,7 @@
 greet() {
 	name=$1
 	time=$2
-	echo " Hello $name Good $time"
+	echo " [$(date)] Hello $name Good $time"
 }
  greet Bhavana Evening
 
