@@ -6,7 +6,7 @@
 
 system_cpu() {
     # Get CPU usage as a pure number
-    local cpu_used=$(top -bn1 | awk '/Cpu\(s\)/ {print 100 - $8}')
+    local cpu_used=$(top -bn1 | awk '/%Cpu/ {print 100 - $8}')
     echo "$cpu_used"
 }
 
