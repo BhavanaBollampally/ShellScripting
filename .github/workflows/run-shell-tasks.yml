@@ -13,10 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: List scripts
+        run: |
+          echo "Listing all shell scripts in Automation/functions/"
+          ls -l ./Automation/functions/
+
       - name: Run all shell scripts
         run: |
           chmod +x ./Automation/functions/*.sh
           for script in ./Automation/functions/*.sh; do
+            echo "======================================"
             echo "Running $script..."
             bash "$script"
           done
