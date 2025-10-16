@@ -1,0 +1,20 @@
+name: Run Shell Tasks
+
+on:
+  push:
+    branches:
+      - main  # change if you use another branch name
+
+jobs:
+  execute-tasks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Give execute permission
+        run: chmod +x *.sh
+
+      - name: Run System Health Script
+        run: ./system_health.sh
