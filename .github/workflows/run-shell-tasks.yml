@@ -3,7 +3,7 @@ name: Run Shell Tasks
 on:
   push:
     branches:
-      - main  # change if you use another branch name
+      - master 
 
 jobs:
   execute-tasks:
