@@ -21,7 +21,7 @@ jobs:
       # Step 3 - Build Docker image
       - name: Build Docker image
         working-directory: ${{ github.workspace }}
-        run: docker build -t system-health:v1 -f Dockerfile .
+        run: docker build -t system-health:${{ github.run_number }} -f Dockerfile .
 
       - name: Run container and save output
         run: docker run system-health:v1 > output.log
