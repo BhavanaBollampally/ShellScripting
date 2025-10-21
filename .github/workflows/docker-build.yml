@@ -24,7 +24,7 @@ jobs:
         run: docker build -t system-health:${{ github.run_number }} -f Dockerfile .
 
       - name: Run container and save output
-        run: docker run system-health:v1 > output.log
+        run: docker run system-health:${{ github.run_number }} > output.log
 
       - name: Upload result log
         uses: actions/upload-artifact@v4
