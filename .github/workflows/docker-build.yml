@@ -23,7 +23,12 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: docker build -t system-health:v1 -f Dockerfile .
 
+      - name: Run container and save output
+        run: docker run system-health:v1 > output.log
 
-      # Step 4 - Run container to verify
-      - name: Run container
-        run: docker run system-health:v1
+      - name: Upload result log
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-output
+          path: output.log
+
