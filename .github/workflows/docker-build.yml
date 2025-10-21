@@ -34,8 +34,8 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker tag system-health:${{ github.workspace }} ${{ secrets.DOCKERHUB_USERNAME }}/system-health:${{ github.workspace }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/system-health:${{ github.workspace }}
+          docker tag system-health:${{ github.run_number }} ${{ secrets.DOCKERHUB_USERNAME }}/system-health:${{ github.run_number }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/system-health:${{ github.run_number }}
 
 
       - name: Upload result log
