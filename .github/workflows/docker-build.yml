@@ -20,7 +20,8 @@ jobs:
 
       # Step 3 - Build Docker image
       - name: Build Docker image
-        run: docker build -t system-health:v1 .
+        run: docker build -t system-health:v1 -f ShellScripting/Dockerfile ShellScripting
+
 
       # Step 4 - Run container to verify
       - name: Run container
