@@ -1,9 +1,16 @@
 #!/usr/bin/bash
 #Author: Bhavana_System
 
+Time_stamp=$(date +"%Y-%m-%d %H:%M:%S")
+file_stamp=$(date +"%Y-%m-%d_%H-%M-%S")
+LOG_DIR=~/Desktop/ShellScripting/Automation/functions/log_monitor/
+mkdir -p "$LOG_DIR"
+LOG_FILE=$LOG_DIR/"$file_stamp"_log_file.log
+
 THRESHOLD_CPU=80
 THRESHOLD_MEMORY=85
 THRESHOLD_DISK=80
+
 
 
 cpu_check() {
@@ -42,7 +49,7 @@ memory_check() {
     then
     echo "Memory usage is CRITICAL...."
     return 2
-    elif (( "$memory_used < $THRESHOLD_MEMORY" )) && (( "$memory_used" > 60 ))
+    elif (( $memory_used < $THRESHOLD_MEMORY )) && (( $memory_used > 60 ))
     then
     echo "Warning!! Memory usage is high..."
     return 1
@@ -64,12 +71,6 @@ else
 status2=CRITICAL
 fi
 
-
-
-
-
-
-
 disk_check() {
     disk_used=$(df -h / | awk 'NR==2 {gsub("%",""); print $5}')
 
@@ -77,7 +78,7 @@ disk_check() {
     then
     echo "disk usage is CRITICAL...."
     return 2
-    elif (( "$disk_used < $THRESHOLD_DISK" )) && (( "$disk_used > 60" ))
+    elif (( $disk_used < $THRESHOLD_DISK )) && (( $disk_used > 60 ))
     then
     echo "Warning!! disk usage is high..."
     return 1
@@ -86,6 +87,7 @@ disk_check() {
     return 0
     fi
 }
+
 disk_check
 status_disk=$?
 if [ "$status_disk" -eq 0 ]
@@ -98,8 +100,6 @@ else
 status3=CRITICAL
 fi
 
-
-
 if [ "$status_cpu" -eq 2 -o "$status_memory" -eq 2 -o "$status_disk" -eq 2 ]
 then
 final=CRITICAL
@@ -109,3 +109,5 @@ final=WARN
 else
 final=OK
 fi
+
+echo "[$Time_stamp] CPU=$cpu_used% | MEM=$memory_used% | DISK=$disk_used% | STATUS=$final " >> "$LOG_FILE"
