@@ -1,11 +1,14 @@
 #!/usr/bin/bash
 #Author: Bhavana_System
 
-Time_stamp=$(date +"%Y-%m-%d %H:%M:%S")
-file_stamp=$(date +"%Y-%m-%d_%H-%M-%S")
-LOG_DIR=~/Desktop/ShellScripting/Automation/functions/log_monitor/
-mkdir -p "$LOG_DIR"
-LOG_FILE=$LOG_DIR/"$file_stamp"_log_file.log
+Time_stamp=$(date +"%Y-%m-%d %H:%M:%S") 
+file_stamp=$(date +"%Y-%m-%d_%H-%M-%S") 
+RETENTION_DAYS=7 
+LOG_DIR=$HOME/Desktop/ShellScripting/Automation/functions/log_monitor/ 
+mkdir -p "$LOG_DIR" 
+LOG_FILE=$LOG_DIR/"$file_stamp"_log_file.log 
+DEL_LOG_FILE=$LOG_DIR/"$file_stamp"_log_del_file.log 
+
 
 THRESHOLD_CPU=80
 THRESHOLD_MEMORY=85
@@ -111,3 +114,9 @@ final=OK
 fi
 
 echo "[$Time_stamp] CPU=$cpu_used% | MEM=$memory_used% | DISK=$disk_used% | STATUS=$final " >> "$LOG_FILE"
+
+find "$LOG_DIR" -type f -mtime +"$RETENTION_DAYS" \
+-exec bash -c 'echo "[$(date +"%Y-%m-%d %H:%M:%S")] Deleted old log file: {}" >> "$1"' _ "$DEL_LOG_FILE" \; \
+-exec rm {} \;
+
+
