@@ -24,7 +24,7 @@ jobs:
           ./monitor.sh
 
       - name: Upload log artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: monitor-logs
           path: Automation/functions/log_monitor/*.log
