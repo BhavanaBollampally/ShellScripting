@@ -124,4 +124,4 @@ find "$LOG_DIR" -type f -mtime +"$RETENTION_DAYS" \
 -exec rm {} \;
 
 echo "[RUNNING MONITOR SCRIPT]"
-
+echo "[Running docker monitor pipeline]"

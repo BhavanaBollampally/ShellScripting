@@ -1,0 +1,36 @@
+name: Docker Monitor Pipeline
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Automation/functions/monitor.sh'
+      - 'Automation/functions/log_monitor/**'
+      - 'Dockerfile_monitor'
+
+jobs:
+  monitor-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker build -f Dockerfile_monitor -t monitor-ci:latest .
+
+    - name: Run container
+      run: docker run --name monitor-container monitor-ci:latest
+
+    - name: Copy logs from container
+      run: docker cp monitor-container:/app/log_monitor ./logs
+
+    - name: Upload logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-monitor-logs
+        path: logs/*.log
+
+    - name: Cleanup
+      run: docker rm monitor-container
