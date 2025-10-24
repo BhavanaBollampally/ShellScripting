@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'Automation/functions/monitor.sh'
+      - 'Automation/functions/log_monitor/**'
+
 
 jobs:
   run-monitor:
