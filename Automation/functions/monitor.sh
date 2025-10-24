@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 #Author: Bhavana_System
+#Task9:System monitor with logging and deletion of old files
+ 
+
+
 
 Time_stamp=$(date +"%Y-%m-%d %H:%M:%S") 
 file_stamp=$(date +"%Y-%m-%d_%H-%M-%S") 
