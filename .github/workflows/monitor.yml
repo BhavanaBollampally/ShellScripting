@@ -1,0 +1,26 @@
+name: Monitor Script Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  run-monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      - name: Run monitor script
+        run: |
+          cd Automation/functions
+          chmod +x monitor.sh
+          ./monitor.sh
+
+      - name: Upload log artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: monitor-logs
+          path: Automation/functions/log_monitor/*.log

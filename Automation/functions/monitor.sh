@@ -4,7 +4,7 @@
 Time_stamp=$(date +"%Y-%m-%d %H:%M:%S") 
 file_stamp=$(date +"%Y-%m-%d_%H-%M-%S") 
 RETENTION_DAYS=7 
-LOG_DIR=$HOME/Desktop/ShellScripting/Automation/functions/log_monitor/ 
+LOG_DIR=./log_monitor/ 
 mkdir -p "$LOG_DIR" 
 LOG_FILE=$LOG_DIR/"$file_stamp"_log_file.log 
 DEL_LOG_FILE=$LOG_DIR/"$file_stamp"_log_del_file.log 
