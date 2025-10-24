@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'Automation/functions/sys_health_check.sh'
+      - 'Dockerfile'
 
 jobs:
   docker-build:
