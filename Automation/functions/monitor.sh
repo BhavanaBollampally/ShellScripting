@@ -123,4 +123,5 @@ find "$LOG_DIR" -type f -mtime +"$RETENTION_DAYS" \
 -exec bash -c 'echo "[$(date +"%Y-%m-%d %H:%M:%S")] Deleted old log file: {}" >> "$1"' _ "$DEL_LOG_FILE" \; \
 -exec rm {} \;
 
+echo "[RUNNING MONITOR SCRIPT]"
 
