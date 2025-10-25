@@ -125,3 +125,13 @@ find "$LOG_DIR" -type f -mtime +"$RETENTION_DAYS" \
 
 echo "[RUNNING MONITOR SCRIPT]"
 echo "[Running docker monitor pipeline]"
+
+
+DATE=$(date +"%Y/%m/%d")
+aws s3 cp "$LOG_FILE" "s3://bhavana-monitor-logs/$DATE/"
+
+
+
+
+
+
