@@ -127,16 +127,14 @@ echo "[RUNNING MONITOR SCRIPT]"
 echo "[Running docker monitor pipeline]"
 
 
-# Check if AWS CLI exists
-if command -v aws >/dev/null 2>&1; then
-    echo "[INFO] AWS CLI found. Uploading log to S3..."
+# Check if AWS CLI and credentials exist
+if command -v aws >/dev/null 2>&1 && aws sts get-caller-identity >/dev/null 2>&1; then
+    echo "[INFO] AWS CLI + creds found. Uploading log to S3..."
     DATE=$(date +"%Y/%m/%d")
     aws s3 cp "$LOG_FILE" "s3://bhavana-monitor-logs/$DATE/"
 else
-    echo "[WARN] AWS CLI not found. Skipping cloud upload."
+    echo "[WARN] Cloud upload skipped (no AWS CLI or credentials)."
 fi
-
-
 
 
 
