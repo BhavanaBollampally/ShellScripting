@@ -8,14 +8,26 @@ on:
       - 'Automation/functions/monitor.sh'
       - 'Automation/functions/log_monitor/**'
 
-
 jobs:
   run-monitor:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+
     steps:
       - name: Checkout repository code
         uses: actions/checkout@v3
+
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: Validate AWS identity
+        run: aws sts get-caller-identity
 
       - name: Run monitor script
         run: |

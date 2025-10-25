@@ -13,6 +13,7 @@ mkdir -p "$LOG_DIR"
 LOG_FILE=$LOG_DIR/"$file_stamp"_log_file.log 
 DEL_LOG_FILE=$LOG_DIR/"$file_stamp"_log_del_file.log 
 
+#Threshhold values
 
 THRESHOLD_CPU=80
 THRESHOLD_MEMORY=85
@@ -132,10 +133,10 @@ if command -v aws >/dev/null 2>&1 && aws sts get-caller-identity >/dev/null 2>&1
     echo "[INFO] AWS CLI + creds found. Uploading log to S3..."
     DATE=$(date +"%Y/%m/%d")
     aws s3 cp "$LOG_FILE" "s3://bhavana-monitor-logs/$DATE/"
+    echo "[SUCCESS] Log uploaded to S3 cloud storage"
+
 else
     echo "[WARN] Cloud upload skipped (no AWS CLI or credentials)."
 fi
-
-
 
 
