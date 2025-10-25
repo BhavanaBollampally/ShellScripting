@@ -124,9 +124,6 @@ find "$LOG_DIR" -type f -mtime +"$RETENTION_DAYS" \
 -exec bash -c 'echo "[$(date +"%Y-%m-%d %H:%M:%S")] Deleted old log file: {}" >> "$1"' _ "$DEL_LOG_FILE" \; \
 -exec rm {} \;
 
-echo "[RUNNING MONITOR SCRIPT]"
-echo "[Running docker monitor pipeline]"
-
 
 # Check if AWS CLI and credentials exist
 if command -v aws >/dev/null 2>&1 && aws sts get-caller-identity >/dev/null 2>&1; then
