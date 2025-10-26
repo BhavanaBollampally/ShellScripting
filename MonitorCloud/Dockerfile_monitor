@@ -3,7 +3,7 @@ FROM ubuntu:latest
 WORKDIR /app
 
 # Copy entire functions folder (including log_monitor)
-COPY Automation/functions/ .
+COPY MonitorCloud/ .
 
 # Ensure log directory exists
 RUN mkdir -p log_monitor

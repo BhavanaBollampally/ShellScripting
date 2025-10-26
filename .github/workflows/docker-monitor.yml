@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'Automation/functions/monitor.sh'
+      - 'MonitorCloud/**'
       - 'Dockerfile_monitorcloud'
       - '.github/workflows/docker-monitor.yml'
 
