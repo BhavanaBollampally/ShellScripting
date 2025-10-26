@@ -135,5 +135,5 @@ if command -v aws >/dev/null 2>&1 && aws sts get-caller-identity >/dev/null 2>&1
 else
     echo "[WARN] Cloud upload skipped (no AWS CLI or credentials)."
 fi
-
+echo "S3 test upload"
 
