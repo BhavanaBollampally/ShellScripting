@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-#Author: Bhavana_System
-#Task9:System monitor with logging and deletion of old files
+#Author: Bhavana
+#Monitor Cloud:System monitor with logging and deletion of old files
  
 
 
